@@ -35,12 +35,15 @@ namespace CleanArch.Mvc
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //ApplicationDbContext
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("UniversityIdentityDBConnection")));
+            //IdentityUser
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //UniversityDBContext
             services.AddDbContext<UniversityDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("UniversityDBConnection"));
